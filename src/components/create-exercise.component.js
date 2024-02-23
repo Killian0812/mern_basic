@@ -44,7 +44,6 @@ export default class CreateExercise extends Component {
         this.setState({ duration: e.target.value });
     }
     onChangeDate(date) {
-        console.log(this);
         this.setState({ date: date });
     }
     onSubmit(e) {

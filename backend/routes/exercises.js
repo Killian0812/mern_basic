@@ -4,7 +4,7 @@ let Exercise = require('../models/exercise.model');
 // Get all 
 router.route('/').get((req, res) => {
     Exercise.find()
-        .then(exercises => res.json((exercises.length > 0 ? exercises : "No exercise found")))
+        .then(exercises => res.json(exercises))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
