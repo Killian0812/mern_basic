@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Add 1
+// Add an Exercise
 router.route('/add').post((req, res) => {
     const username = req.body.username;
     const description = req.body.description;
@@ -49,4 +49,5 @@ router.route('/update/:id').post((req, res) => {
                 .catch(err => res.status(400).json('Error: ' + err));
         })
 })
+
 module.exports = router;
