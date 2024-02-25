@@ -12,6 +12,7 @@ export default class CreateExercise extends Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
+        this.onChangeLevel = this.onChangeLevel.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -19,6 +20,7 @@ export default class CreateExercise extends Component {
             description: "",
             duration: 0,
             date: new Date(),
+            level: 0,
             users: []
         }
     }
@@ -46,6 +48,9 @@ export default class CreateExercise extends Component {
     onChangeDate(date) {
         this.setState({ date: date });
     }
+    onChangeLevel(e) {
+        this.setState({ level: e.target.value });
+    }
     onSubmit(e) {
         e.preventDefault();
 
@@ -54,6 +59,7 @@ export default class CreateExercise extends Component {
             description: this.state.description,
             duration: this.state.duration,
             date: this.state.date,
+            level: this.state.level,
         }
 
         console.log(exercise);
@@ -96,6 +102,15 @@ export default class CreateExercise extends Component {
                                 <DatePicker selected={this.state.date} onChange={this.onChangeDate}
                                     className='form-control' required></DatePicker>
                             </div>
+                        </div>
+                        <div className='form-group'>
+                            <label>Priority</label>
+                            <select className='form-control'
+                                value={this.state.level} onChange={this.onChangeLevel}>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
                         </div>
                         <br></br>
                         <div className='form-group'>

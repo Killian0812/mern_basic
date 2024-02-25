@@ -12,6 +12,7 @@ export default class EditExercise extends Component {
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeDuration = this.onChangeDuration.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
+        this.onChangeLevel = this.onChangeLevel.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -20,6 +21,7 @@ export default class EditExercise extends Component {
             description: "",
             duration: 0,
             date: new Date(),
+            level: 0,
             users: []
         }
     }
@@ -42,7 +44,8 @@ export default class EditExercise extends Component {
                     username: res.data.username,
                     description: res.data.description,
                     duration: res.data.duration,
-                    date: new Date(res.data.date)
+                    date: new Date(res.data.date),
+                    level: res.data.level,
                 })
             }).catch(err => console.log(err));
     }
@@ -59,6 +62,9 @@ export default class EditExercise extends Component {
     onChangeDate(date) {
         this.setState({ date: date });
     }
+    onChangeLevel(e) {
+        this.setState({ level: e.target.value });
+    }
     onSubmit(e) {
         e.preventDefault();
 
@@ -67,6 +73,7 @@ export default class EditExercise extends Component {
             description: this.state.description,
             duration: this.state.duration,
             date: this.state.date,
+            level: this.state.level
         }
 
         console.log(exercise);
@@ -109,6 +116,15 @@ export default class EditExercise extends Component {
                                 <DatePicker selected={this.state.date} onChange={this.onChangeDate}
                                     className='form-control' required></DatePicker>
                             </div>
+                        </div>
+                        <div className='form-group'>
+                            <label>Priority</label>
+                            <select className='form-control'
+                                value={this.state.level} onChange={this.onChangeLevel}>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
                         </div>
                         <br></br>
                         <div className='form-group'>

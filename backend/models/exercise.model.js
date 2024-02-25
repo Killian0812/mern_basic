@@ -15,6 +15,9 @@ const exerciseSchema = new Schema(
         },
         date: {
             type: Date, required: true
+        },
+        level: {
+            type: Number, required: true
         }
     },
     {
