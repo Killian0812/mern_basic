@@ -4,6 +4,7 @@ import axios from 'axios';
 import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables.min.js';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
+import 'datatables.net-buttons-dt';
 
 function Exercise(props) {
     return (
@@ -72,6 +73,24 @@ export default class ExercisesList extends Component {
     initDataTables() {
         $('#toolButton').addClass('btn btn-primary active');
         $('#dtBasicExample').DataTable({
+            layout: {
+                top2Start: 'pageLength',
+                top2End: 'search',
+                // Not showing
+                topStart: {
+                    buttons: ['print']
+                },
+                topEnd: null
+            },
+            "language": {
+                "lengthMenu": "Show _MENU_ Exercises per page",
+                "zeroRecords": "No Exercise available",
+                "info": "Showing _START_ to _END_ of _TOTAL_ Exercises",
+                "infoEmpty": "No Exercise found",
+                "search": "Find Exercise: ",
+            },
+            // Default data per page
+            pageLength: 10,
             columnDefs: [
                 // Left align the header content of column 1
                 { className: "dt-head-left", targets: [0, 1] },
@@ -81,7 +100,7 @@ export default class ExercisesList extends Component {
                 { width: '150px', targets: [0, 3] },
                 { width: '200px', targets: [1, 5] },
                 { "orderable": false, "targets": [5] }
-            ]
+            ],
         });
         $('.dataTables_length').addClass('bs-select');
     }
@@ -93,9 +112,9 @@ export default class ExercisesList extends Component {
     }
 
     toolToggle() {
-        this.setState({ usingAdvancedTool: this.state.usingAdvancedTool + 1 });
+        this.setState({ usingAdvancedTool: 1 - this.state.usingAdvancedTool });
         console.log(this.state.usingAdvancedTool);
-        if (this.state.usingAdvancedTool % 2 == 0)
+        if (this.state.usingAdvancedTool === 0)
             this.initDataTables();
         else
             this.destroyDataTables();

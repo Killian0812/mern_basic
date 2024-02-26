@@ -14,6 +14,8 @@
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "datatables.net": "^2.0.0",
+    "datatables.net-buttons": "^3.0.0",
+    "datatables.net-buttons-dt": "^3.0.0",
     "datatables.net-dt": "^2.0.0",
     "jquery": "^3.7.1",
     "react": "^18.2.0",
