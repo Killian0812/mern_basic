@@ -27,7 +27,7 @@ export default class EditExercise extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/users/')
+        axios.get('/users/')
             .then(res => {
                 if (res.data.length > 0)
                     this.setState({
@@ -38,7 +38,7 @@ export default class EditExercise extends Component {
         let exerciseId = window.location.pathname.split('/')[2];
         this.setState({ id: exerciseId });
 
-        axios.get('http://localhost:8080/exercises/' + exerciseId)
+        axios.get('/exercises/' + exerciseId)
             .then(res => {
                 this.setState({
                     username: res.data.username,
@@ -77,7 +77,7 @@ export default class EditExercise extends Component {
         }
 
         console.log(exercise);
-        axios.post('http://localhost:8080/exercises/update/' + this.state.id, exercise)
+        axios.post('/exercises/update/' + this.state.id, exercise)
             .then(res => console.log(res.data));
 
         window.location = '/';

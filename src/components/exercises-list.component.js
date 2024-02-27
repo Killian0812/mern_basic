@@ -38,7 +38,7 @@ export default class ExercisesList extends Component {
     }
 
     deleteExercise(id) {
-        axios.delete('http://localhost:8080/exercises/' + id)
+        axios.delete('/exercises/' + id)
             .then(res => console.log(res.data));
 
         this.setState({ exercises: this.state.exercises.filter(el => el._id !== id) });
@@ -113,7 +113,7 @@ export default class ExercisesList extends Component {
 
     toolToggle() {
         this.setState({ usingAdvancedTool: 1 - this.state.usingAdvancedTool });
-        console.log(this.state.usingAdvancedTool);
+        // console.log(this.state.usingAdvancedTool);
         if (this.state.usingAdvancedTool === 0)
             this.initDataTables();
         else
@@ -122,8 +122,8 @@ export default class ExercisesList extends Component {
 
     componentDidMount() {
         this.setState({ usingAdvancedTool: 0 });
-        console.log(this.state.usingAdvancedTool);
-        axios.get('http://localhost:8080/exercises/')
+        // console.log(this.state.usingAdvancedTool);
+        axios.get('/exercises/')
             .then(res => {
                 if (res.data.length > 0) {
                     this.setState({ exercises: res.data });
